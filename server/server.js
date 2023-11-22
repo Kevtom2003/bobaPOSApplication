@@ -83,6 +83,68 @@ app.get('/menudata/descriptions', (req, res) => {
       });
 });
 
+app.get('/inventory/itemid', (req, res) => {
+  inventoryids = []
+  pool.query('SELECT itemid FROM inventory;').then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){
+              inventoryids.push(query_res.rows[i]);
+          }
+          const data = {inventoryids: inventoryids};
+          res.json(data);
+      });
+});
+
+app.get('/inventory/quantity', (req, res) => {
+  inventoryquantity = []
+  pool.query('SELECT quantity FROM inventory;').then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){
+              inventoryquantity.push(query_res.rows[i]);
+          }
+          const data = {inventoryquantity: inventoryquantity};
+          res.json(data);
+      });
+});
+
+app.get('/inventory/itemcategory', (req, res) => {
+  inventorycategories = []
+  pool.query('SELECT itemcategory FROM inventory;').then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){
+              inventorycategories.push(query_res.rows[i]);
+          }
+          const data = {inventorycategories: inventorycategories};
+          res.json(data);
+      });
+});
+
+app.get('/inventory/minimumamount', (req, res) => {
+  inventoryminimum = []
+  pool.query('SELECT minimumamount FROM inventory;').then(query_res => {
+          for (let i = 0; i < query_res.rowCount; i++){
+              inventoryminimum.push(query_res.rows[i]);
+          }
+          const data = {inventoryminimum: inventoryminimum};
+          res.json(data);
+      });
+});
+
+//get all of the orders data
+app.get('/ordersdata', (req, res) => {
+  pool.query('SELECT * FROM orders;').then(query_res => {
+    res.json(query_res.rows);
+  }).catch(err => {
+    res.status(500).json({error: err.message});
+  });
+});
+
+//get all of the employees data
+app.get('/employeesdata', (req, res) => {
+  pool.query('SELECT * FROM employees;').then(query_res => {
+    res.json(query_res.rows);
+  }).catch(err => {
+    res.status(500).json({error: err.message});
+  });
+});
+
 app.get('*', function (req, res) {
   res.sendFile(path.join(buildPath, 'index.html'), function (err) {
     if (err) {

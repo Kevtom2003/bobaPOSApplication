@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -37,7 +37,91 @@ import "./inventory.css";
 
 function Inventory() {
   const navigate = useNavigate();
+  const [inventoryIDS, setInventoryIDS] = useState([]);
+  const [inventoryQuantity, setInventoryQuantity] = useState([]);
+  const [inventoryCategories, setInventoryCategories] = useState([]);
+  const [inventoryMinimum, setInventoryMinimum] = useState([]);
+  const[inventoryItems, setInventoryItems] = useState([]);
+  useEffect(() =>{
+    const fetchInventoryIDS = async () => {
+      try{
+      const initialResult = await fetch(`http://54.92.197.133/inventory/itemid`);
+      const jsonResult = await initialResult.json();
+      setInventoryIDS(jsonResult.inventoryids);
+      } catch (error) {
+        // Handle the error or try an alternative URL
+        console.error('Error fetching inventory ID data:', error);
+        // Attempt an alternative URL
+        try {
+          const initialResult = await fetch(`http://localhost:5001/inventory/itemid`);
+          const jsonResult = await initialResult.json();
+          setInventoryIDS(jsonResult.inventoryids);
+        } catch (alternativeError) {
+          console.error('Error fetching inventory ID data from the alternative URL:', alternativeError);
+        }
+      }
+    }
 
+    const fetchInventoryQuantity = async () => {
+      try{
+      const initialResult = await fetch(`http://54.92.197.133/inventory/quantity`);
+      const jsonResult = await initialResult.json();
+      setInventoryQuantity(jsonResult.inventoryquantity);
+    } catch (error) {
+      // Handle the error or try an alternative URL
+      console.error('Error fetching quantity data:', error);
+      // Attempt an alternative URL
+      try {
+        const initialResult = await fetch(`http://localhost:5001/inventory/quantity`);
+        const jsonResult = await initialResult.json();
+        setInventoryQuantity(jsonResult.inventoryquantity);
+      } catch (alternativeError) {
+        console.error('Error fetching quantity data from the alternative URL:', alternativeError);
+      }
+    }
+    }
+  const fetchInventoryCategory = async () => {
+    try{
+      const initialResult = await fetch(`http://54.92.197.133/inventory/itemcategory`);
+      const jsonResult = await initialResult.json();
+      setInventoryCategories(jsonResult.inventorycategories);
+      } catch (error) {
+        // Handle the error or try an alternative URL
+        console.error('Error fetching category data:', error);
+        // Attempt an alternative URL
+        try {
+          const initialResult = await fetch(`http://localhost:5001/inventory/itemcategory`);
+          const jsonResult = await initialResult.json();
+          setInventoryCategories(jsonResult.inventorycategories);
+        } catch (alternativeError) {
+          console.error('Error fetching category data from the alternative URL:', alternativeError);
+        }
+      }
+    }
+    const fetchInventoryMinimum = async () => {
+      try{
+        const initialResult = await fetch(`http://54.92.197.133/inventory/minimumamount`);
+        const jsonResult = await initialResult.json();
+        setInventoryMinimum(jsonResult.inventoryminimum);
+        } catch (error) {
+          // Handle the error or try an alternative URL
+          console.error('Error fetching minimum data:', error);
+          // Attempt an alternative URL
+          try {
+            const initialResult = await fetch(`http://localhost:5001/inventory/minimumamount`);
+            const jsonResult = await initialResult.json();
+            setInventoryMinimum(jsonResult.inventoryminimum);
+          } catch (alternativeError) {
+            console.error('Error fetching minimum data from the alternative URL:', alternativeError);
+          }
+        }
+      }
+    fetchInventoryCategory();
+    fetchInventoryIDS();
+    fetchInventoryMinimum();
+    fetchInventoryQuantity();
+  }, [])
+  
   const handleLogout = () => {
     navigate("/");
   };
@@ -52,7 +136,22 @@ function Inventory() {
     </Tr>
   );
 
-
+  useEffect(() => {
+    if(inventoryIDS.length !== 0){
+      const newInventoryItem = inventoryIDS.map((item, index) =>{
+        const quantity = inventoryQuantity[index].quantity;
+        const category = inventoryCategories[index].itemcategory;
+        const minimum = inventoryMinimum[index].minimumamount;
+        return{
+          id: item.itemid,
+          quantity,
+          category,
+          minimum
+        };
+      });
+      setInventoryItems(newInventoryItem);
+    }
+  }, [inventoryIDS,inventoryQuantity,inventoryCategories,inventoryMinimum]);
   
 
   return (
@@ -138,19 +237,17 @@ function Inventory() {
           <Table variant="simple" borderCollapse="separate">
             <Thead>
               <Tr>
-                <Th>Date</Th>
-                <Th>Order Number</Th>
-                <Th>Amount</Th>
-                <Th>Order Item</Th>
+                <Th>Item ID</Th>
+                <Th>Quantity</Th>
+                <Th>Item Category</Th>
+                <Th>Minimum Amount</Th>
               </Tr>
             </Thead>
             <Tbody>
           {/* Use the TableRow component to render rows */}
-          <TableRow data={["2023-01-01", "123456", "$100", "Item 1"]} />
-          <TableRow data={["2023-01-01", "123456", "$100", "Item 1"]} />
-          <TableRow data={["2023-01-01", "123456", "$100", "Item 1"]} />
-          <TableRow data={["2023-01-01", "123456", "$100", "Item 1"]} />
-          <TableRow data={["2023-01-01", "123456", "$100", "Item 1"]} />
+          {inventoryItems.map((item, index) => (
+          <TableRow key = {index} data={[item.id, item.quantity, item.category, item.minimum]} />
+          ))}
           {/* Add more rows as needed */}
             </Tbody>
           </Table>
