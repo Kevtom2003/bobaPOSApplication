@@ -96,7 +96,7 @@ function Employees() {
             <Button onClick={handleInventory} variant="unstyled">Inventory</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
-            <Button onClick={handleMenuInfo} variant="unstyled">Menu</Button>
+            <Button onClick={handleMenuInfo} variant="unstyled">Menu Items</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
             <Button onClick={handleMenuDisplayInfo} variant="unstyled">Menu Board Display</Button>
@@ -131,7 +131,7 @@ function Employees() {
           >
             <Icon as={FaDollarSign} fontSize="2xl" color="white" ml={3} />
           </Center>
-          <Text fontSize="l" textAlign="center" ml={3} ><a href="/menuinfo">Menu</a></Text>
+          <Text fontSize="l" textAlign="center" ml={3} ><a href="/menuinfo">Menu Items</a></Text>
         </Box>
 
         <Box w="32%"  bg="blue.900" ml={4} mr={4} borderRadius="lg" h="140px">
@@ -161,6 +161,7 @@ function Employees() {
           <Heading as="h2" fontSize="xl" mb={8} color="blackAlpha.900">
             Employee Details
           </Heading>
+          <EmployeeCRUD/>
           <Table variant="simple" borderCollapse="separate">
             <Thead>
               <Tr>
@@ -178,7 +179,6 @@ function Employees() {
           {/* Add more rows as needed */}
             </Tbody>
           </Table>
-          <EmployeeCRUD/>
         </Flex>
         </Flex>
     </Flex>

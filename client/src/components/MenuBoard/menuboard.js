@@ -205,34 +205,6 @@ const MenuBoard = () => {
     <Flex alignItems="flex-start" bg="gray.800">
       {/* Left Side */}
       <Center w="20%" display="flex" flexDirection="column">
-        <Button
-          onClick={handleLogin}
-          fontFamily='Varela Round'
-          textTransform='uppercase'
-          background='#D49D8F'
-          padding='15px'
-          color='#FFFFFF'
-          fontSize='14px'
-          marginTop={"30px"}
-          marginBottom={"-60px"}
-          _hover={{ background: '#C39B91' }}
-        >
-          Log In
-        </Button>
-        <Button
-          onClick={handleMenuboarddisplay}
-          fontFamily='Varela Round'
-          textTransform='uppercase'
-          background='#D49D8F'
-          padding='15px'
-          color='#FFFFFF'
-          fontSize='14px'
-          marginTop={"70px"}
-          marginBottom={"-60px"}
-          _hover={{ background: '#C39B91' }}
-        >
-          Menu Board
-        </Button>
         {/* Kung Fu Tea Logo */}
         <Image
             src='/kungfutealogo.png'   // Adjust the image path as needed
@@ -245,6 +217,34 @@ const MenuBoard = () => {
             mb={4}  
             mt = {20}  
         />
+        <Button
+          onClick={handleLogin}
+          fontFamily='Varela Round'
+          textTransform='uppercase'
+          background='#D49D8F'
+          padding='15px'
+          color='#FFFFFF'
+          fontSize='18px'
+          marginTop={"10px"}
+          marginBottom={"-60px"}
+          _hover={{ background: '#C39B91' }}
+        >
+          Log In
+        </Button>
+        <Button
+          onClick={handleMenuboarddisplay}
+          fontFamily='Varela Round'
+          textTransform='uppercase'
+          background='#D49D8F'
+          padding='15px'
+          color='#FFFFFF'
+          fontSize='18px'
+          marginTop={"70px"}
+          marginBottom={"30px"}
+          _hover={{ background: '#C39B91' }}
+        >
+          Menu Board
+        </Button>
           
         {/* Category Cards */}
         
@@ -451,8 +451,8 @@ const MenuBoard = () => {
           position="fixed"
           right="0"
           top="0"
-          bottom="0"
-          width="30%"
+          bottom="5%"
+          width="330px"
           bg="white"
           boxShadow="md"
           p="4"

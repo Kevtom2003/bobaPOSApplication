@@ -114,7 +114,7 @@ function Menuinfo() {
             <Button onClick={handleInventory} variant="unstyled">Inventory</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
-            <Button onClick={handleMenuInfo} variant="unstyled">Menu</Button>
+            <Button onClick={handleMenuInfo} variant="unstyled">Menu Items</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
             <Button onClick={handleMenuDisplayInfo} variant="unstyled">Menu Board Display</Button>
@@ -149,7 +149,7 @@ function Menuinfo() {
           >
             <Icon as={FaDollarSign} fontSize="2xl" color="white" ml={3} />
           </Center>
-          <Text fontSize="l" textAlign="center" ml={3} ><a href="/menuinfo">Menu</a></Text>
+          <Text fontSize="l" textAlign="center" ml={3} ><a href="/menuinfo">Menu Items</a></Text>
         </Box>
 
         <Box w="32%"  bg="blue.900" ml={4} mr={4} borderRadius="lg" h="140px">
@@ -180,6 +180,7 @@ function Menuinfo() {
           <Heading as="h2" fontSize="xl" mb={8} color="blackAlpha.900">
             Menu Information
           </Heading>
+          <MenuinfoCRUD onUpdate={handleCrudButtonClick}></MenuinfoCRUD>
           <Table variant="simple" borderCollapse="separate">
             <Thead>
               <Tr>
@@ -199,7 +200,6 @@ function Menuinfo() {
           {/* Add more rows as needed */}
             </Tbody>
           </Table>
-          <MenuinfoCRUD onUpdate={handleCrudButtonClick}></MenuinfoCRUD>
         </Flex>
         </Flex>
     </Flex>

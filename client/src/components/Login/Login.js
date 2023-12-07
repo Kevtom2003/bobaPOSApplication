@@ -143,11 +143,24 @@ function Login() {
               background='#D49D8F'
               padding='15px'
               color='#FFFFFF'
-              fontSize='14px'
+              fontSize='18px'
               marginBottom={"10px"}
               _hover={{ background: '#C39B91' }}
             >
               Log In
+            </Button>
+            <Button
+              onClick={() => navigate("/")}
+              fontFamily='Varela Round'
+              textTransform='uppercase'
+              background='#D49D8F'
+              padding='15px'
+              color='#FFFFFF'
+              fontSize='18px'
+              marginBottom={"10px"}
+              _hover={{ background: '#C39B91' }}
+            >
+              Back to self-checkout
             </Button>
             <GoogleLogin
               onSuccess={credentialResponse => {

@@ -198,6 +198,7 @@ const MenuBoard = () => {
   };
 
   return (
+    <div style = {{zoom : "110%"}}>
     <Flex flexDirection="column">
     <Box background={"gray.800"} py={3}>
       <Heading as="h1" textAlign={'center'} color={'white'} fontFamily={'Roboto, sans-serif'}>Checkout the customer</Heading>
@@ -205,6 +206,18 @@ const MenuBoard = () => {
     <Flex alignItems="flex-start" bg="gray.800">
       {/* Left Side */}
       <Center w="20%" display="flex" flexDirection="column">
+         {/* Kung Fu Tea Logo */}
+         <Image
+            src='/kungfutealogo.png'   // Adjust the image path as needed
+            alt='Kung Fu Tea Logo'
+            boxSize="125px"             // Reduce the size of the image
+            objectFit="contain" 
+            textAlign="center"  
+            borderRadius="md"
+            boxShadow="md"   
+            mb={4}  
+            mt = {20}  
+        />
         <Button
           onClick={handleLogout}
           fontFamily='Varela Round'
@@ -212,7 +225,7 @@ const MenuBoard = () => {
           background='#D49D8F'
           padding='15px'
           color='#FFFFFF'
-          fontSize='14px'
+          fontSize='18px'
           marginTop={"30px"}
           marginBottom={"-60px"}
           _hover={{ background: '#C39B91' }}
@@ -226,111 +239,18 @@ const MenuBoard = () => {
           background='#D49D8F'
           padding='15px'
           color='#FFFFFF'
-          fontSize='14px'
+          fontSize='18px'
           marginTop={"70px"}
           marginBottom={"-60px"}
           _hover={{ background: '#C39B91' }}
         >
           Menu Board
         </Button>
-        {/* Kung Fu Tea Logo */}
-        <Image
-            src='/kungfutealogo.png'   // Adjust the image path as needed
-            alt='Kung Fu Tea Logo'
-            boxSize="125px"             // Reduce the size of the image
-            objectFit="contain" 
-            textAlign="center"  
-            borderRadius="md"
-            boxShadow="md"   
-            mb={4}  
-            mt = {20}  
-        />
-          
-        {/* Category Cards */}
-        
-        <Card
-        borderRadius="lg"      // Add rounded edges
-        boxShadow="md"    
-        boxSize="155px"
-        mb={5}     // Add a small drop shadow
-        height='auto'
-        >
-        <Image
-            src='/milkTea.jpg'   // Adjust the image path as needed
-            alt='Milk Tea'
-            objectFit="cover" 
-            textAlign="center"
-            borderRadius="md"
-            boxShadow="md"
-        />
-        <Divider />
-        {/* <Text>Freshly brewed teas paired with milk powder</Text> */}
-        <Button 
-        variant={selectedCategory === "Milk Tea" ? "solid" : "outline"}
-        colorScheme="blue"
-        onClick={() => handleFilterCategory("Milk Tea")}
-        align="start"
-        aria-label="Filter Milk Tea">
-            Filter
-        </Button>
-        </Card>
-
-        <Card
-        borderRadius="lg"      // Add rounded edges
-        boxShadow="md"    
-        boxSize="155px"
-        mb={5}     // Add a small drop shadow
-        height='auto'
-        >
-        <Image
-            src='/punchTea.jpg'   // Adjust the image path as needed
-            alt='Punch Tea'
-            objectFit="cover" 
-            textAlign="center"
-            borderRadius="md"
-            boxShadow="md"
-        />
-        <Divider />
-        {/* <Text>Freshly brewed teas paired with milk powder</Text> */}
-        <Button variant={selectedCategory === "Fruit" ? "solid" : "outline"}
-          colorScheme="blue"
-          onClick={() => handleFilterCategory("Fruit")}
-          align="start"
-          aria-label="Filter Punch Tea">
-            Filter
-        </Button>
-        </Card>
-
-        <Card
-        borderRadius="lg"      // Add rounded edges
-        boxShadow="md"    
-        boxSize="155px"
-        mb={5}     // Add a small drop shadow
-        height='auto'
-        >
-        <Image
-            src='/seasonalTea.jpg'   // Adjust the image path as needed
-            alt='Seasonal Tea'
-            objectFit="cover" 
-            textAlign="center"
-            borderRadius="md"
-            boxShadow="md"
-        />
-        <Divider />
-        {/* <Text>Freshly brewed teas paired with milk powder</Text> */}
-        <Button variant={selectedCategory === "Classic" ? "solid" : "outline"}
-          colorScheme="blue"
-          onClick={() => handleFilterCategory("Classic")}
-          align="start"
-          aria-label="Filter Classic Tea">
-            Filter
-        </Button>
-        </Card>
       </Center>
 
       {/* Right Side */}
       <Grid
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+        templateColumns="repeat(auto-fill, minmax(400px, 1fr))"
         gap={4} // Reduced the gap to decrease the space between rows
         pl={6} // Left padding to ensure some space from the left side
         pb = {8}
@@ -341,9 +261,6 @@ const MenuBoard = () => {
         {filteredItems.map((item, index) => (
           <GridItem key={index} colSpan={1}>
           <Card borderRadius="lg" overflow="hidden" display="flex" flexDirection="column" position="relative">
-            {/* Display the image for the drink */}
-            <Image src={item.image} alt={item.name} boxSize="100%" objectFit="cover" />
-                      
             {/* Product Name */}
             <Box p={3} d="flex" flexDirection="column" justifyContent="space-between" flexGrow={1}>
               <Text fontWeight="bold" textAlign="center" color="black">{item.name}</Text>
@@ -352,18 +269,6 @@ const MenuBoard = () => {
                 <IconButton aria-label="Add to cart" icon={<AddIcon />} colorScheme="teal" onClick={() => handleAddToCart(item)}/>
         
                 {/* Description Popover */}
-                <Popover placement="bottom" strategy="fixed">
-                  <PopoverTrigger>
-                    <IconButton aria-label={`Description of ${item.name}`} icon={<InfoIcon />} colorScheme="teal" ml={2} />
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    <PopoverArrow />
-                    <PopoverCloseButton aria-label="Close description"/>
-                    <PopoverHeader color="black">Description of {item.name}</PopoverHeader>
-                    {/* This is where the description will show */}
-                    <PopoverBody color="black">{item.description}</PopoverBody>
-                  </PopoverContent>
-                </Popover>
               </Flex>
             </Box>
           </Card>
@@ -451,8 +356,8 @@ const MenuBoard = () => {
           position="fixed"
           right="0"
           top="0"
-          bottom="0"
-          width="30%"
+          bottom="5%"
+          width="330px"
           bg="white"
           boxShadow="md"
           p="4"
@@ -573,6 +478,7 @@ const MenuBoard = () => {
 
     </Flex>
     </Flex>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ import Menuinfo from "./components/Menuinfo/menuinfo";
 import MenuBoardDisplay from "./components/MenuBoard/menuboarddisplay";
 import Cashier from "./components/CashierDashboard/CashierDashboard";
 import SalesReport from "./components/salesreports/salesreport";
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme, Button } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
 
 const customTheme = extendTheme({ 
@@ -59,10 +59,10 @@ const App = () => {
         {/* Container for Google Translate element */}
         <div id="google_translate_element"></div>
       </div>
-      <div style={{ zoom: zoom + "%", position: "fixed", bottom: "10px", right: "0" }}>
-        <button style={{marginRight: "10px", color: "white"}} onClick={zoomIn}>Zoom In</button>
-        <button style={{marginRight: "10px", color: "white"}} onClick={zoomOut}>Zoom Out</button>
-        <button style={{color: "white"}} onClick={resetZoom}>Reset Zoom</button>
+      <div style={{ position: "fixed", bottom: "10px", right: "0", zIndex: "999" }}>
+        <Button style={{marginRight: "10px", color: "white", fontSize: "24px"}} onClick={zoomIn} background='#D49D8F' _hover={{ background: '#C39B91' }}>Zoom In</Button>
+        <Button style={{marginRight: "10px", color: "white", fontSize: "24px"}} onClick={zoomOut} background='#D49D8F' _hover={{ background: '#C39B91' }}>Zoom Out</Button>
+        <Button style={{marginRight: "10px", color: "white", fontSize: "24px"}} onClick={resetZoom} background='#D49D8F' _hover={{ background: '#C39B91' }}>Reset Zoom</Button>
         </div>
         <div style={{ zoom: zoom + "%"}}>
       <Routes>

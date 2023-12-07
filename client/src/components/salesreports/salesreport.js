@@ -104,7 +104,7 @@ function SalesReport() {
             <Button onClick={handleInventory} variant="unstyled">Inventory</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
-            <Button onClick={handleMenuInfo} variant="unstyled">Menu</Button>
+            <Button onClick={handleMenuInfo} variant="unstyled">Menu Items</Button>
           </ListItem>
           <ListItem mb="15px" fontSize="lg">
             <Button onClick={handleMenuDisplayInfo} variant="unstyled">Menu Board Display</Button>
